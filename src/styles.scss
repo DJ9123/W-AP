@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  text-align: center;
+}
+
+@font-face {
+  font-family: 'Fredoka One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Fredoka One'), local('FredokaOne-Regular'), url(http://themes.googleusercontent.com/static/fonts/fredokaone/v1/SL0aFUFfkFMMdariYQ3_YZ0EAVxt0G0biEntp43Qt6E.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Anonymous Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Anonymous Pro'), local('AnonymousPro'), url(http://themes.googleusercontent.com/static/fonts/anonymouspro/v3/Zhfjj_gat3waL4JSju74Eyepy_bK1QysdtOeR9F4Ffs.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans Light';
+  src:url('./assets/fonts/OpenSans-Light.ttf') format('truetype');
+}
+
+.navy {
+  color: #1f4b62;
+}
+
+.white {
+  color: white;
+}
+
+.fredoka {
+  font-family: 'Fredoka One';
+}
+
+.anon {
+  font-family: 'Anonymous Pro';
+}
+
+.glacial {
+  font-family: 'GlacialIndifferenceRegular';
+}
+
+.spaced {
+  letter-spacing: 3px;
+}
+
+.sans {
+  font-family: 'Open Sans Light';
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.cloud {
+  font-size: 75px !important;
+  width: unset !important;
+
+  @media (max-width: 600px) {
+    font-size: 40px !important;
+  }
+}

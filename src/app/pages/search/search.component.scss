@@ -1,0 +1,90 @@
+.content {
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+  margin: 0;
+  position: absolute;
+}
+
+.search-bar {
+  
+  @media (min-width: 600px) {
+    min-width: 500px;
+  }
+
+  padding-top: 10px;
+
+  input {
+    transform: translateY(-4px);
+  }
+
+  button {
+    transform: translateX(10px);
+    padding: unset;
+    border-right: unset;
+    border-top: unset;
+    border-bottom: unset;
+
+    mat-icon {
+      transform: translateY(8px);
+      font-size: 41px;
+      width: unset;
+      height: 59px;
+    }
+  }
+}
+
+.footer {
+  position: fixed;
+  z-index: -10;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #1f4b62;
+}
+
+.title {
+  font-size: 72px;
+}
+
+.motto {
+  font-size: 32px;
+  padding-top: 24px;
+  
+  @media (max-width: 600px) {
+    font-size: 19px;
+    padding-top: 12px;
+  }
+}
+
+.subtext {
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+    padding-top: 4px;
+    padding-bottom: unset;
+  }
+}
+
+.subtext:last-child {
+  font-size: 20px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+    padding-bottom: 4px;
+    padding-top: unset;
+  }
+}
+
+.smaller-subtext {
+  font-size: 14px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
