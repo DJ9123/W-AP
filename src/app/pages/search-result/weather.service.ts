@@ -16,4 +16,8 @@ export class WeatherService {
     return this.http.get(`${environment.weatherAPIUrl}/weather?lat=${lat}&lon=${lng}&appid=${apiKey}&units=imperial`);
   }
 
+  getWeatherForecast(lat: number, lng: number) {
+    return this.http.get(`${environment.weatherAPIUrl}/forecast?lat=${lat}&lon=${lng}&appid=${apiKey}&units=imperial`);
+  }
+
 }

@@ -47,6 +47,7 @@ export class SearchResultComponent implements OnInit {
     originalLo: number,
     name: string
   };
+  forecast: any[] = [];
   // END WEATHER
 
   constructor(
@@ -93,6 +94,7 @@ export class SearchResultComponent implements OnInit {
       }
 
       this.getWeather();
+      this.getWeatherForecast();
     });
   }
 
@@ -121,6 +123,47 @@ export class SearchResultComponent implements OnInit {
         };
 
         this.iconUrl = `https://openweathermap.org/img/wn/${x.weather[0].icon}@2x.png`;
+      }, err => {
+        console.error(err);
+      });
+  }
+
+  getWeatherForecast() {
+    this.loadedQuery = this.formGroup.value.query.slice(0);
+    this.formattedDate = moment().format('dddd, MMM D');
+    this.weatherService.getWeatherForecast(this.lat, this.lng)
+      .subscribe((x: any) => {
+        let day: any = {};
+        let tempTotal = 0;
+
+        for (let d = 8; d < x.list.length; d += 8) {
+          day = Object.assign({}, x.list[d]);
+          tempTotal = 0;
+
+          // tslint:disable-next-line: prefer-for-of
+          for (let h = d; h < 5 + d; h++) {
+            const element = x.list[h];
+
+            tempTotal += Object.assign({}, element.main).temp;
+
+            if (day.main.temp_min > element.main.temp_min) {
+              day.main.temp_min = element.main.temp_min;
+            }
+            if (day.main.temp_max < element.main.temp_max) {
+              day.main.temp_max = element.main.temp_max;
+            }
+
+          }
+
+          day.main.tempAvg = tempTotal / 5;
+          tempTotal = 0;
+          this.forecast.push(day);
+          day = {};
+        }
+
+        console.log(this.forecast);
+
+        // this.iconUrl = `https://openweathermap.org/img/wn/${x.weather[0].icon}@2x.png`;
       }, err => {
         console.error(err);
       });
