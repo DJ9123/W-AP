@@ -15,12 +15,14 @@ import { MatRadioModule } from '@angular/material/radio';
 
 
 import { SearchComponent } from './pages/search/search.component';
+import { SearchResultComponent } from './pages/search-result/search-result.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    SearchResultComponent,
   ],
   imports: [
     BrowserModule,
