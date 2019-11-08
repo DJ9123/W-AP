@@ -14,9 +14,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { SearchComponent } from './pages/search/search.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
+import { WeatherService } from './pages/search-result/weather.service';
 
 
 @NgModule({
@@ -40,8 +42,11 @@ import { SearchResultComponent } from './pages/search-result/search-result.compo
       apiKey: ''
     }),
     FlexLayoutModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    WeatherService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
