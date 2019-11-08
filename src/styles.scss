@@ -27,6 +27,11 @@ body {
   src: url("./assets/fonts/OpenSans-Light.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "GlacialIndifferenceRegular";
+  src: url("./assets/fonts/GlacialIndifference-Regular.otf") format("opentype");
+}
+
 .navy {
   color: #1f4b62;
 }

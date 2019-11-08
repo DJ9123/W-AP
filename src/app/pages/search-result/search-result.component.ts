@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DefaultMapStyle } from 'src/app/models/default-map-style';
 import { MapsAPILoader } from '@agm/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-search-result',
@@ -20,7 +21,7 @@ export class SearchResultComponent implements OnInit {
   });
 
   // MAPS
-
+  isReadySubject = new Subject();
   defaultLocation = { lat: 33.585639, lng: -101.873648 };
   zoom = 10;
 
@@ -47,17 +48,26 @@ export class SearchResultComponent implements OnInit {
     }
 
     if (this.formGroup.value.query) {
-      setTimeout(() => {
-        this.search();
-      }, 100);
+      this.isReadySubject.subscribe(() => this.search());
+      this.searchWhenDefined(() => this.isReadySubject.next());
+    }
+  }
+
+  searchWhenDefined(callback) {
+    if (typeof google !== 'undefined') {
+      callback();
+    } else {
+      setTimeout(this.searchWhenDefined, 100, callback);
     }
   }
 
   search() {
-    this.getCoords(this.formGroup.value.query, (coordinates, status) => {
+    this.router.navigate([], { queryParams: this.formGroup.value });
+    this.getResponse(this.formGroup.value.query, (results, status) => {
       if (status === 'OK') {
-        this.lat = coordinates.lat();
-        this.lng = coordinates.lng();
+        const location = results[0].geometry.location;
+        this.lat = location.lat();
+        this.lng = location.lng();
       } else {
         this.lat = this.defaultLocation.lat;
         this.lng = this.defaultLocation.lng;
@@ -65,13 +75,15 @@ export class SearchResultComponent implements OnInit {
     });
   }
 
-  getCoords(query, callback) {
+  getResponse(query, callback) {
     const geocoder = new google.maps.Geocoder();
-    let coordinates;
     geocoder.geocode({ address: query }, (results, status) => {
-      coordinates = results[0].geometry.location;
-      callback(coordinates, status);
+      callback(results, status);
     });
+  }
+
+  navigateHome() {
+    this.router.navigate(['/']);
   }
 
 }

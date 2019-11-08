@@ -2,8 +2,8 @@
   <div class="left-section white">
     <form [formGroup]="formGroup">
       <div>
-        <div class="search-title white fredoka">W-AP</div>
-        <mat-form-field class="search-bar" appearance="outline">
+        <div class="search-title white fredoka" (click)="navigateHome()">W-AP</div>
+        <mat-form-field class="search-bar-small" appearance="outline">
           <input matInput type="search" formControlName="query">
           <button mat-button matSuffix mat-stroked-button (click)="search()" [disabled]="!formGroup.value?.query">
             <mat-icon>search</mat-icon>
