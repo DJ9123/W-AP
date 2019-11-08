@@ -11,7 +11,7 @@ export class SearchComponent implements OnInit {
 
   formGroup = new FormGroup({
     query: new FormControl(''),
-    option: new FormControl('1'),
+    option: new FormControl('F'),
   });
 
   constructor(

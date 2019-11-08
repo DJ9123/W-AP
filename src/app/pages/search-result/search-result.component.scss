@@ -14,6 +14,42 @@
     float: left;
     flex: 1;
     background-color: #356178;
+    display: --ms-flex;
+    display: --webkit-flex;
+    display: flex;
+
+    .current-day {
+      float: left;
+      flex: 1;
+
+      .query {
+        font-size: 22px;
+      }
+      
+      .date {
+        font-size: 20px;
+      }
+      
+      .current-temp {
+        img {
+          margin-top: -22px;
+          margin-bottom: -22px;
+          margin-right: -10px;
+          margin-left: -10px;
+          height: 74px;
+        }
+        font-size: 33px;
+      }
+      
+      .hi-lo {
+        font-size: 22px;
+      }
+    }
+
+    .future-day {
+      float: left;
+      flex: 1;
+    }
   }
 }
 

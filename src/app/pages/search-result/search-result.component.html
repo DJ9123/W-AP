@@ -12,15 +12,52 @@
       </div>
 
       <div>
-        <mat-radio-group aria-label="Select an option" formControlName="option">
-          <mat-radio-button value="1">Fahrenheit</mat-radio-button>
-          <mat-radio-button value="2">Celsius</mat-radio-button>
+        <mat-radio-group aria-label="Select an option" formControlName="option" (change)="optionChanged()">
+          <mat-radio-button value="F">Fahrenheit</mat-radio-button>
+          <mat-radio-button value="C">Celsius</mat-radio-button>
         </mat-radio-group>
       </div>
 
     </form>
   </div>
-  <div class="right-section white">{{ formGroup.value | json }}</div>
+  <div class="right-section white">
+    <div class="current-day">
+
+      <ng-container *ngIf="currentWeather">
+        <div class="query sans spaced">
+          {{ currentWeather.name | titlecase }}
+        </div>
+        <div class="date sans">
+          {{ formattedDate }}
+        </div>
+        <div class="current-temp glacial">
+          <div>
+            <img [src]="iconUrl">
+            <span>{{ currentWeather.current }}°{{ formGroup.value.option }}</span>
+          </div>
+        </div>
+        <div class="hi-lo sans">
+          <span class="bold">↑</span>
+          {{ currentWeather.hi }}°
+          <span class="bold">↓</span>
+          {{ currentWeather.lo }}°
+        </div>
+      </ng-container>
+
+    </div>
+    <div class="future-day">
+      temp1
+    </div>
+    <div class="future-day">
+      temp2
+    </div>
+    <div class="future-day">
+      temp3
+    </div>
+    <div class="future-day">
+      {{ formGroup.value | json }}
+    </div>
+  </div>
 </div>
 
 <div id="map">
