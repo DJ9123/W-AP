@@ -1,0 +1,78 @@
+.header {
+  z-index: 10;
+  display: --ms-flex;
+  display: --webkit-flex;
+  display: flex;
+
+  .left-section {
+    float: left;
+    flex: 1;
+    max-width: 30%;
+    background-color: #1f4b62;
+  }
+  .right-section {
+    float: left;
+    flex: 1;
+    background-color: #356178;
+  }
+}
+
+.search-title {
+  font-size: 20px;
+  width: 90%;
+  padding-top: 8px;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+}
+
+.search-bar {
+  width: 90%;
+  height: 72px;
+
+  input {
+    transform: translateY(-4px);
+    color: black;
+  }
+
+  div.mat-form-field-outline-start,
+  div.mat-form-field-outline-gap,
+  div.mat-form-field-outline-end {
+    background-color: white;
+    border: unset !important;
+  }
+
+  button {
+    transform: translateX(10px);
+    padding: unset;
+    border-right: unset;
+    border-top: unset;
+    border-bottom: unset;
+    color: black;
+
+    mat-icon {
+      transform: translateY(8px) !important;
+      font-size: 41px !important;
+      width: unset !important;
+      height: 59px !important;
+    }
+  }
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+  padding-bottom: 10px;
+}
+
+#map {
+  z-index: -1;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+}
+
+agm-map {
+  height: 100%;
+}

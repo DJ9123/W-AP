@@ -1,5 +1,44 @@
 <div class="header">
-    {{ formGroup.value | json }}
+  <div class="left-section white">
+    <form [formGroup]="formGroup">
+      <div>
+        <div class="search-title white fredoka">W-AP</div>
+        <mat-form-field class="search-bar" appearance="outline">
+          <input matInput type="search" formControlName="query">
+          <button mat-button matSuffix mat-stroked-button (click)="search()" [disabled]="!formGroup.value?.query">
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-radio-group aria-label="Select an option" formControlName="option">
+          <mat-radio-button value="1">Fahrenheit</mat-radio-button>
+          <mat-radio-button value="2">Celsius</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+    </form>
+  </div>
+  <div class="right-section white">{{ formGroup.value | json }}</div>
 </div>
 
+<div id="map">
+  <agm-map [zoom]="12.5" [latitude]="lat" [longitude]="lng" [styles]="mapStyle">
+  </agm-map>
+</div>
 
+<!-- <agm-map *ngIf="defaultLocation"
+         [zoom]="zoom"
+         [latitude]="lat"
+         [longitude]="lng"
+         [mapTypeId]="defaultMapType"
+         [mapTypeControl]="mapTypeControl"
+         [mapTypeControlOptions]="mapTypeControlOptions"
+         [panControl]="panControl"
+         [panControlOptions]="panControlOptions"
+         [zoomControl]="zoomControl"
+         [zoomControlOptions]="zoomControlOptions"
+         [fitBounds]="fitBounds"
+         [styles]="mapStyle">
+</agm-map> -->

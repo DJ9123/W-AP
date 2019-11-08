@@ -12,7 +12,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
-
+import { AgmCoreModule } from '@agm/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SearchComponent } from './pages/search/search.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
@@ -35,6 +36,10 @@ import { SearchResultComponent } from './pages/search-result/search-result.compo
     MatInputModule,
     MatButtonModule,
     MatRadioModule,
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    }),
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
