@@ -23,7 +23,7 @@
       flex: 1;
 
       .query {
-        font-size: 22px;
+        font-size: 16px;
       }
       
       .date {
@@ -49,6 +49,29 @@
     .future-day {
       float: left;
       flex: 1;
+
+      .query {
+        font-size: 16px;
+      }
+      
+      .date {
+        font-size: 20px;
+      }
+
+      .current-temp {
+        img {
+          margin-top: -22px;
+          margin-bottom: -22px;
+          margin-right: -10px;
+          margin-left: -10px;
+          height: 74px;
+        }
+        font-size: 33px;
+      }
+
+      .hi-lo {
+        font-size: 22px;
+      }
     }
   }
 }
@@ -98,7 +121,8 @@
 
 .mat-radio-button ~ .mat-radio-button {
   margin-left: 16px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 15px;
 }
 
 #map {

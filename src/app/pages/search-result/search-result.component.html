@@ -25,7 +25,7 @@
 
       <ng-container *ngIf="currentWeather">
         <div class="query sans spaced">
-          {{ currentWeather.name | titlecase }}
+          &nbsp;
         </div>
         <div class="date sans">
           {{ formattedDate }}
@@ -45,18 +45,45 @@
       </ng-container>
 
     </div>
-    <div class="future-day">
-      temp1
-    </div>
-    <div class="future-day">
-      temp2
-    </div>
-    <div class="future-day">
-      temp3
-    </div>
-    <div class="future-day">
-      {{ formGroup.value | json }}
-    </div>
+
+    <ng-container *ngFor="let day of forecast">
+      <div class="future-day">
+        <!-- {{day.main | json}} -->
+        <div class="query sans spaced">
+          &nbsp;
+        </div>
+        <div class="date sans">
+          {{ getFormattedDate(day.dt_txt) }}
+        </div>
+        <div class="current-temp glacial">
+          <div>
+            <img [src]="day.iconUrl">
+            <span>{{ convertUnit(day.main.original_temp) }}°{{ formGroup.value.option }}</span>
+          </div>
+        </div>
+        <div class="hi-lo sans">
+          <span class="bold">↑</span>
+          {{ convertUnit(day.main.original_temp_max) }}°
+          <span class="bold">↓</span>
+          {{ convertUnit(day.main.original_temp_min) }}°
+        </div>
+        <!-- <div class="date sans">
+          {{ formattedDate }}
+        </div>
+        <div class="current-temp glacial">
+          <div>
+            <img [src]="iconUrl">
+          </div>
+        </div>
+        <div class="hi-lo sans">
+          <span class="bold">↑</span>
+          {{ currentWeather.hi }}°
+          <span class="bold">↓</span>
+          {{ currentWeather.lo }}°
+        </div> -->
+      </div>
+    </ng-container>
+
   </div>
 </div>
 
@@ -64,18 +91,3 @@
   <agm-map [zoom]="12.5" [latitude]="lat" [longitude]="lng">
   </agm-map>
 </div>
-
-<!-- <agm-map *ngIf="defaultLocation"
-         [zoom]="zoom"
-         [latitude]="lat"
-         [longitude]="lng"
-         [mapTypeId]="defaultMapType"
-         [mapTypeControl]="mapTypeControl"
-         [mapTypeControlOptions]="mapTypeControlOptions"
-         [panControl]="panControl"
-         [panControlOptions]="panControlOptions"
-         [zoomControl]="zoomControl"
-         [zoomControlOptions]="zoomControlOptions"
-         [fitBounds]="fitBounds"
-         [styles]="mapStyle">
-</agm-map> -->

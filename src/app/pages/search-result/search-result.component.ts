@@ -93,6 +93,7 @@ export class SearchResultComponent implements OnInit {
         this.lng = this.defaultLocation.lng;
       }
 
+      this.forecast = [];
       this.getWeather();
       this.getWeatherForecast();
     });
@@ -110,17 +111,17 @@ export class SearchResultComponent implements OnInit {
     this.formattedDate = moment().format('dddd, MMM D');
     this.weatherService.getCurrentWeather(this.lat, this.lng)
       .subscribe((x: any) => {
-        console.log(x);
-
         this.currentWeather = {
-          current: x.main.temp.toFixed(1),
           originalCurrent: x.main.temp,
-          hi: x.main.temp_max.toFixed(1),
+          current: x.main.temp.toFixed(1),
           originalHi: x.main.temp_max,
-          lo: x.main.temp_min.toFixed(1),
+          hi: x.main.temp_max.toFixed(1),
           originalLo: x.main.temp_min,
+          lo: x.main.temp_min.toFixed(1),
           name: x.name,
         };
+
+        this.optionChanged();
 
         this.iconUrl = `https://openweathermap.org/img/wn/${x.weather[0].icon}@2x.png`;
       }, err => {
@@ -154,16 +155,23 @@ export class SearchResultComponent implements OnInit {
             }
 
           }
-
           day.main.tempAvg = tempTotal / 5;
+
+          day.main.original_temp = day.main.tempAvg;
+          day.main.temp = day.main.tempAvg.toFixed(1);
+          day.main.original_temp_min = day.main.temp_min;
+          day.main.temp_min = day.main.temp_min.toFixed(1);
+          day.main.original_temp_max = day.main.temp_max;
+          day.main.temp_max = day.main.temp_max.toFixed(1);
+
+          day.iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+
           tempTotal = 0;
           this.forecast.push(day);
           day = {};
         }
 
-        console.log(this.forecast);
-
-        // this.iconUrl = `https://openweathermap.org/img/wn/${x.weather[0].icon}@2x.png`;
+        this.optionChanged();
       }, err => {
         console.error(err);
       });
@@ -188,6 +196,10 @@ export class SearchResultComponent implements OnInit {
         break;
     }
     return parseFloat(result.toFixed(1));
+  }
+
+  getFormattedDate(date: string): string {
+    return moment(new Date(date)).format('dddd, MMM D');
   }
 
   navigateHome() {
