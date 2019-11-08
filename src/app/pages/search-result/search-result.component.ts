@@ -1,3 +1,4 @@
+/// <reference types="@types/googlemaps" />
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -19,7 +20,6 @@ export class SearchResultComponent implements OnInit {
   });
 
   // MAPS
-  // private geocoder = new google.maps.Geocoder();
 
   defaultLocation = { lat: 33.585639, lng: -101.873648 };
   zoom = 10;
@@ -47,39 +47,31 @@ export class SearchResultComponent implements OnInit {
     }
 
     if (this.formGroup.value.query) {
-      this.search();
-    } else /* if (this.defaultLocation) */ {
-      this.lat = this.defaultLocation.lat;
-      this.lng = this.defaultLocation.lng;
-    } /* else {
-      this.loader.load().then(() => {
-        this.setCurrentLocation();
-      });
-    } */
+      setTimeout(() => {
+        this.search();
+      }, 100);
+    }
   }
 
-  // setCurrentLocation() {
-  //   if ('geolocation' in navigator) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.lat = position.coords.latitude;
-  //       this.lng = position.coords.longitude;
-  //       this.defaultLocation = { lat: this.lat, lng: this.lng };
-  //     });
-  //   }
-  // }
-
   search() {
-    this.getCoords(this.formGroup.value.query, (coordinates) => {
-      console.log(coordinates);
+    this.getCoords(this.formGroup.value.query, (coordinates, status) => {
+      if (status === 'OK') {
+        this.lat = coordinates.lat();
+        this.lng = coordinates.lng();
+      } else {
+        this.lat = this.defaultLocation.lat;
+        this.lng = this.defaultLocation.lng;
+      }
     });
   }
 
   getCoords(query, callback) {
+    const geocoder = new google.maps.Geocoder();
     let coordinates;
-    // this.geocoder.geocode({ address: query }, (results, status) => {
-    //   coordinates = results[0].geometry.location;
-    //   callback(coordinates);
-    // });
+    geocoder.geocode({ address: query }, (results, status) => {
+      coordinates = results[0].geometry.location;
+      callback(coordinates, status);
+    });
   }
 
 }
