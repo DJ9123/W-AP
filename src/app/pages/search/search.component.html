@@ -6,23 +6,26 @@
     <!-- 14px -->
     <div class="smaller-subtext navy glacial bold spaced">(WEATHER MAP)</div>
 
-    <div>
-      <mat-form-field class="search-bar" appearance="outline">
-        <input matInput type="search">
-        <button mat-button matSuffix mat-stroked-button>
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
+    <form [formGroup]="formGroup">
+      <div>
+        <mat-form-field class="search-bar" appearance="outline">
+          <input matInput type="search">
+          <button mat-button matSuffix mat-stroked-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
 
-    <div>
-      <mat-radio-group aria-label="Select an option">
-        <mat-radio-button value="1">Fahrenheit</mat-radio-button>
-        <mat-radio-button value="2">Celcius</mat-radio-button>
-      </mat-radio-group>
-    </div>
+      <div>
+        <mat-radio-group aria-label="Select an option" formControlName="option">
+          <mat-radio-button value="1">Fahrenheit</mat-radio-button>
+          <mat-radio-button value="2">Celsius</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+    </form>
+
   </div>
-
 
 </div>
 <div class="footer">
@@ -38,7 +41,7 @@
   <div class="subtext white sans">
     <span><a class="white" href="https://github.com/DJ9123">github.com/DJ9123</a> || </span>
     <span><a class="white" href="https://github.com/submaureen">github.com/submaureen</a> || </span>
-    <span><a class="white" href="https://github.com/arkabarkadoo">github.com/arkabarkadoo</a></span>
+    <span><a class="white" href="https://github.com/barka">github.com/barka</a></span>
   </div>
 
 </div>
