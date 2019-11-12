@@ -42,7 +42,7 @@ import { PreventDoubleClickDirective } from './directives/prevent-double-click.d
     MatButtonModule,
     MatRadioModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDHdQ62hIPDsqJHghXfWt-0yvgSG7yDtLg'
+      apiKey: ''
     }),
     FlexLayoutModule,
     HttpClientModule,
