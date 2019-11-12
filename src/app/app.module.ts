@@ -20,6 +20,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SearchComponent } from './pages/search/search.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
 import { WeatherService } from './pages/search-result/weather.service';
+import { PreventDoubleClickDirective } from './directives/prevent-double-click.directive';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { WeatherService } from './pages/search-result/weather.service';
     AppComponent,
     SearchComponent,
     SearchResultComponent,
+    PreventDoubleClickDirective,
   ],
   imports: [
     BrowserModule,

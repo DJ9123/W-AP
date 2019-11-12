@@ -1,5 +1,5 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, ViewEncapsulation, ViewChild, ApplicationRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ApplicationRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DefaultMapStyle } from 'src/app/models/default-map-style';
@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   encapsulation: ViewEncapsulation.None,
   providers: [DefaultMapStyle]
 })
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements AfterViewInit {
 
   formGroup = new FormGroup({
     query: new FormControl(''),
@@ -61,7 +61,7 @@ export class SearchResultComponent implements OnInit {
     private appRef: ApplicationRef,
   ) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
     const qParams = this.route.snapshot.queryParams;
 
     if (qParams.query && qParams.option) {
@@ -90,7 +90,6 @@ export class SearchResultComponent implements OnInit {
       if (status === 'OK') {
         this.zoom = 12.5;
         const location = results[0].geometry.location;
-        console.log(location);
         this.lat = location.lat();
         this.lng = location.lng();
       } else {

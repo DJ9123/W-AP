@@ -5,7 +5,7 @@
         <div class="search-title white fredoka" (click)="navigateHome()">W-AP</div>
         <mat-form-field class="search-bar-small" appearance="outline">
           <input matInput type="search" formControlName="query">
-          <button mat-button matSuffix mat-stroked-button (click)="search()" [disabled]="!formGroup.value?.query">
+          <button mat-button matSuffix mat-stroked-button appPreventDoubleClick (throttledClick)="search()" [throttleTime]="700" [disabled]="!formGroup.value?.query">
             <mat-icon>search</mat-icon>
           </button>
         </mat-form-field>
