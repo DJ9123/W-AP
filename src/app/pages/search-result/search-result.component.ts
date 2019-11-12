@@ -1,5 +1,5 @@
 /// <reference types="@types/googlemaps" />
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ApplicationRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { DefaultMapStyle } from 'src/app/models/default-map-style';
@@ -7,6 +7,7 @@ import { MapsAPILoader } from '@agm/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { WeatherService } from './weather.service';
 import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search-result',
@@ -25,8 +26,8 @@ export class SearchResultComponent implements OnInit {
   // MAPS
   @ViewChild('AgmMapWrapper', { static: false }) AgmMapWrapper;
   isReadySubject = new Subject();
-  defaultLocation = { lat: 33.585639, lng: -101.873648 };
-  zoom = 10;
+  defaultLocation = { lat: 33.585639, lng: -101.873648 }; //default location Lubbock
+  zoom = 12.5;
 
   lat: number;
   lng: number;
@@ -56,6 +57,8 @@ export class SearchResultComponent implements OnInit {
     private style: DefaultMapStyle,
     private loader: MapsAPILoader,
     private weatherService: WeatherService,
+    private _snackBar: MatSnackBar,
+    private appRef: ApplicationRef,
   ) { }
 
   ngOnInit() {
@@ -89,9 +92,12 @@ export class SearchResultComponent implements OnInit {
         this.lat = location.lat();
         this.lng = location.lng();
       } else {
+        // this.snackbar.open('Location not found');
+        this._snackBar.open('Location not found', 'close', { duration: 2000 });
         this.lat = this.defaultLocation.lat;
         this.lng = this.defaultLocation.lng;
       }
+      this.appRef.tick();
 
       this.forecast = [];
       this.getWeather();

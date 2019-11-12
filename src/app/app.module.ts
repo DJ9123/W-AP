@@ -15,6 +15,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { SearchComponent } from './pages/search/search.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
@@ -39,10 +40,11 @@ import { WeatherService } from './pages/search-result/weather.service';
     MatButtonModule,
     MatRadioModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyDHdQ62hIPDsqJHghXfWt-0yvgSG7yDtLg'
     }),
     FlexLayoutModule,
     HttpClientModule,
+    MatSnackBarModule,
   ],
   providers: [
     WeatherService,
