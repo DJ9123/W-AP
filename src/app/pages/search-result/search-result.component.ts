@@ -88,7 +88,9 @@ export class SearchResultComponent implements OnInit {
     this.router.navigate([], { queryParams: this.formGroup.value });
     this.getResponse(this.formGroup.value.query, (results, status) => {
       if (status === 'OK') {
+        this.zoom = 12.5;
         const location = results[0].geometry.location;
+        console.log(location);
         this.lat = location.lat();
         this.lng = location.lng();
       } else {
