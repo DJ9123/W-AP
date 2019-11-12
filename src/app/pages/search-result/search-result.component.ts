@@ -129,9 +129,9 @@ export class SearchResultComponent implements OnInit {
           name: x.name,
         };
 
-        this.optionChanged();
-
         this.iconUrl = `https://openweathermap.org/img/wn/${x.weather[0].icon}@2x.png`;
+        
+        this.optionChanged();
       }, err => {
         console.error(err);
       });
@@ -145,7 +145,7 @@ export class SearchResultComponent implements OnInit {
         let day: any = {};
         let tempTotal = 0;
 
-        for (let d = 8; d < x.list.length; d += 8) {
+        for (let d = 0; d < x.list.length - 8; d += 8) {
           day = Object.assign({}, x.list[d]);
           tempTotal = 0;
 
@@ -189,6 +189,7 @@ export class SearchResultComponent implements OnInit {
     this.currentWeather.current = this.convertUnit(this.currentWeather.originalCurrent);
     this.currentWeather.hi = this.convertUnit(this.currentWeather.originalHi);
     this.currentWeather.lo = this.convertUnit(this.currentWeather.originalLo);
+    this.appRef.tick();
   }
 
   convertUnit(value: number): number {

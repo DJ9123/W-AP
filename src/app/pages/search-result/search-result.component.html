@@ -21,67 +21,55 @@
     </form>
   </div>
   <div class="right-section white">
-    <div class="current-day">
 
-      <ng-container *ngIf="currentWeather">
-        <div class="query sans spaced">
-          &nbsp;
-        </div>
-        <div class="date sans">
-          {{ formattedDate }}
-        </div>
-        <div class="current-temp glacial">
-          <div>
-            <img [src]="iconUrl">
-            <span>{{ currentWeather.current }}°{{ formGroup.value.option }}</span>
+    <ng-container *ngIf="currentWeather && forecast.length > 0">
+      <div class="current-day">
+
+        <ng-container>
+          <div class="query sans spaced">
+            &nbsp;
           </div>
-        </div>
-        <div class="hi-lo sans">
-          <span class="bold">↑</span>
-          {{ currentWeather.hi }}°
-          <span class="bold">↓</span>
-          {{ currentWeather.lo }}°
+          <div class="date sans">
+            {{ formattedDate }}
+          </div>
+          <div class="current-temp glacial">
+            <div>
+              <img [src]="iconUrl">
+              <span>{{ currentWeather.current }}°{{ formGroup.value.option }}</span>
+            </div>
+          </div>
+          <div class="hi-lo sans">
+            <span class="bold">↑</span>
+            {{ currentWeather.hi }}°
+            <span class="bold">↓</span>
+            {{ currentWeather.lo }}°
+          </div>
+        </ng-container>
+
+      </div>
+
+      <ng-container *ngFor="let day of forecast">
+        <div class="future-day">
+          <div class="query sans spaced">
+            &nbsp;
+          </div>
+          <div class="date sans">
+            {{ getFormattedDate(day.dt_txt) }}
+          </div>
+          <div class="current-temp glacial">
+            <div>
+              <img [src]="day.iconUrl">
+              <span>{{ convertUnit(day.main.original_temp) }}°{{ formGroup.value.option }}</span>
+            </div>
+          </div>
+          <div class="hi-lo sans">
+            <span class="bold">↑</span>
+            {{ convertUnit(day.main.original_temp_max) }}°
+            <span class="bold">↓</span>
+            {{ convertUnit(day.main.original_temp_min) }}°
+          </div>
         </div>
       </ng-container>
-
-    </div>
-
-    <ng-container *ngFor="let day of forecast">
-      <div class="future-day">
-        <!-- {{day.main | json}} -->
-        <div class="query sans spaced">
-          &nbsp;
-        </div>
-        <div class="date sans">
-          {{ getFormattedDate(day.dt_txt) }}
-        </div>
-        <div class="current-temp glacial">
-          <div>
-            <img [src]="day.iconUrl">
-            <span>{{ convertUnit(day.main.original_temp) }}°{{ formGroup.value.option }}</span>
-          </div>
-        </div>
-        <div class="hi-lo sans">
-          <span class="bold">↑</span>
-          {{ convertUnit(day.main.original_temp_max) }}°
-          <span class="bold">↓</span>
-          {{ convertUnit(day.main.original_temp_min) }}°
-        </div>
-        <!-- <div class="date sans">
-          {{ formattedDate }}
-        </div>
-        <div class="current-temp glacial">
-          <div>
-            <img [src]="iconUrl">
-          </div>
-        </div>
-        <div class="hi-lo sans">
-          <span class="bold">↑</span>
-          {{ currentWeather.hi }}°
-          <span class="bold">↓</span>
-          {{ currentWeather.lo }}°
-        </div> -->
-      </div>
     </ng-container>
 
   </div>
