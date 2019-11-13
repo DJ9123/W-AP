@@ -1,6 +1,6 @@
 # W-AP
 
-W-AP (**W**eather-**Ma**p) is website that shows you the weather and a map based on address, city name (international), or zipcode (U.S. only).
+W-AP (**W**eather-M**ap**) is website that shows you the weather and a map based on address, city name (international), or zipcode (U.S. only).
 
 ## Design Process and Mockup
 
