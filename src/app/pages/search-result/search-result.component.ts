@@ -171,7 +171,8 @@ export class SearchResultComponent implements AfterViewInit {
           day.main.original_temp_max = day.main.temp_max;
           day.main.temp_max = day.main.temp_max.toFixed(1);
 
-          day.iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
+          // Grab icon from 3:00 PM
+          day.iconUrl = `https://openweathermap.org/img/wn/${x.list[d + 4].weather[0].icon}@2x.png`;
 
           tempTotal = 0;
           this.forecast.push(day);
